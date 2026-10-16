@@ -68,7 +68,7 @@ jobs:
             fi
             git checkout --ours -- .github/workflows
             git add -A .github/workflows
-            git merge --continue
+            git commit --no-edit || git merge --continue
           fi
           # freeze .github/workflows at the pre-merge fork state
           PRE=$(git rev-parse HEAD^1)
@@ -79,7 +79,7 @@ jobs:
           if git diff --quiet HEAD; then
             echo "freeze: no workflow changes to revert"
           else
-            git commit --amend --no-edit >/dev/null
+            git commit --amend --no-edit --allow-empty >/dev/null || git commit --amend --no-edit >/dev/null
           fi
           git diff --stat "$PRE" HEAD -- .github/workflows | grep -q . && {
             echo "::error::workflow freeze failed"; exit 1
