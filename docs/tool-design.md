@@ -30,8 +30,13 @@ inside one tool.
 
 A primitive reports a reusable fact about an identified object or relationship.
 A format-specific decoder qualifies; one application's business interpretation
-belongs outside the general contract. Expose provider APIs when they add a
-useful capability that existing tools cannot express.
+belongs outside the general contract. The format owner reports source
+observations and structural validation; the application or workflow owner
+applies use-case-specific admission policy without reinterpreting raw fields.
+For example, DOS MZ structure and Windows-header evidence stay separate, while
+target resolution decides whether the unresolved header permits admission.
+Expose provider APIs when they add a useful capability that existing tools
+cannot express.
 
 Compose a workflow when repeated use demonstrates a multi-source outcome REA
 can join without hiding caller choices or uncertainty. Batch homogeneous reads
@@ -66,7 +71,9 @@ satisfy. A plan without execution does not establish runtime behavior.
   enforce the requested target and lifecycle.
 - Add limits only for real format, protocol, authority, or measured resource
   constraints. Report pagination, truncation, cancellation, and partial failure.
-  An assumed agent budget is insufficient justification for a limit.
+  An assumed agent budget is insufficient justification for a limit. Name the
+  ceiling and its recovery as described in
+  [admission limits and recovery](design/limits-and-recovery.md).
 
 ## Own the lifecycle
 
